@@ -1,17 +1,20 @@
-
 let mainH = 0
 let subH = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 // 点击触发下拉弹框模块
 const nav = document.querySelector('.nav')
 const pop = document.querySelector('.pop')
-
+let open = false
 pop.addEventListener('click', function () {
-    if (nav.style.height !== '60vh') {
-        nav.style.height = '60vh'
+    if (open === false && mainH === 0) {
+        open = true
         mainH = 60
-    } else {
-        nav.style.height = '0'
-        mainH = 0
+        nav.style.height = `${mainH}vh`
+    } else if (open === true && mainH !== 0) {
+        nav.style.height = `0`
+        open = false
+    } else if (open === false && mainH) {
+        open = true
+        nav.style.height = `${mainH}vh`
     }
 })
 
